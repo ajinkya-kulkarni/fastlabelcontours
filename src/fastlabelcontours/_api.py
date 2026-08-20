@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import NamedTuple, TypeAlias
+from typing import NamedTuple, TypeAlias, cast
 
 import numpy as np
 from numpy.typing import NDArray
@@ -46,7 +46,6 @@ def contours(labels: LabelArray) -> LabelContours:
     if labels.ndim != 2:
         raise ValueError("labels must be a 2D array")
 
-    ids, points, contour_offsets, label_offsets, is_hole = _core.contours2d(
-        np.ascontiguousarray(labels)
-    )
+    contiguous = cast(LabelArray, np.ascontiguousarray(labels))
+    ids, points, contour_offsets, label_offsets, is_hole = _core.contours2d(contiguous)
     return LabelContours(ids, points, contour_offsets, label_offsets, is_hole)
