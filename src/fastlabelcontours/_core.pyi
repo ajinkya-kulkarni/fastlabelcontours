@@ -3,7 +3,6 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
 
-
 def contours2d(
     labels: NDArray[np.uint32] | NDArray[np.uint64],
 ) -> tuple[

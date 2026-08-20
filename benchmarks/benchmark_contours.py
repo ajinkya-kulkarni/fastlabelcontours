@@ -73,7 +73,9 @@ def rasterio_shapes(labels: np.ndarray) -> int:
     return sum(1 for _geometry, _value in shapes(labels, mask=labels != 0, connectivity=4))
 
 
-def median_ms(fn: Callable[[np.ndarray], Any], labels: np.ndarray, repeat: int) -> tuple[float, Any]:
+def median_ms(
+    fn: Callable[[np.ndarray], Any], labels: np.ndarray, repeat: int
+) -> tuple[float, Any]:
     times: list[float] = []
     out: Any = None
     for _ in range(repeat):
